@@ -12,36 +12,204 @@
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
+        <!--<link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>-->
+
         <!--<link rel="stylesheet" href="css/normalize.css">-->
-        <!--<link rel="stylesheet" href="css/main.css">-->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
         <!--<script src="js/vendor/modernizr-2.6.2.min.js"></script>-->
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/jquery.fullPage.css" />
+        <link href="css/lightbox.css" rel="stylesheet" />
+
+        <style>
+            #slide{
+                width: 100%;
+            }
+        </style>
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <!--MENU========================================================-->
+        <nav id="main-container" class="navbar navbar-default navbar-fixed-top">
             <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Project name</a>
-                </div>
-                <div class="navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Portafolio</a></li>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse" >
+                    <span class="sr-only">Cambiar navegación</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand"><img id="main-logo" src="img/logo.png" alt="coronado Edgar" class="img-responsive"></a>
+            </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul id="main-menu" class="nav navbar-nav navbar-right">
+                        <li><a class="main_active" href="#">Freelance</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portafolio<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" >Odoo - OpenERP</a></li>
+                                <li><a href="#">Android Apps</a></li>
+                                <li><a href="#">Tienda Online</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contáctame</a></li>
                     </ul>
-                </div>    
+                </div>
             </div>
         </nav>
-
-
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-
         
+        <div id="fullpage">
+            <!--PRESENTACION========================================================-->
+            <div class="section " id="section0">
+                <div id="slide">
+                    <div class="ce_slide_classical">
+                        <ul>
+                            <li class="ce_slide_item_video" data-url:video="http://www.youtube.com/embed/CuRLna-9-yo?feature=player_embedded" data-margin:top="#main-container"><img src="img/bg1.jpg" alt="bg1"></li>
+                            <li><img src="img/bg2.jpg" alt="bg2"></li>
+                            <li><img src="img/bg3.jpg" alt="bg3"></li>
+                            <li><img src="img/bg4.jpg" alt="bg4"></li>
+                            <li><img src="img/bg5.jpg" alt="bg5"></li>
+                        </ul>
+                    </div>
+                </div>        
+            </div>
+            <!--PROYECTOS========================================================-->
+            <div class="section" id="section1">
+                <div id="main_proyect">
+                    <div id="main_service" class="col-md-12"><!--Servicios-->
+                        <hgroup class="main_titlewrap">
+                            <h2 class="main_title">SERVICIOS</h2>
+                        </hgroup>
+                        <div id="main_service_article">
+                            <article class="col-md-4 col-xs-4">
+                                <div>
+                                    <span class="fa fa fa-cogs fa-5x main_resize"></span>
+                                </div>
+                                <header >
+                                    <h3><a href="#">Sistema Adaptable</a></h3>
+                                    <p class="main_service_content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem nesciunt, illo esse sequi vel officia, laboriosam voluptate alias hic sapiente cum amet, optio quaerat mollitia asperiores necessitatibus velit! Consequatur, mollitia.</p>
+                                </header>
+                            </article>
+                            <article class="col-md-4 col-xs-4">
+                                <div>
+                                    <span class="fa fa-linux fa-5x main_resize"></span>
+                                </div>
+                                <header>
+                                    <h3><a href="#">Consultoría y Soporte Técnico</a></h3>
+                                    <p class="main_service_content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem nesciunt, illo esse sequi vel officia, laboriosam voluptate alias hic sapiente cum amet, optio quaerat mollitia asperiores necessitatibus velit! Consequatur, mollitia.</p>
+                                </header>
+                            </article>
+                            <article class="col-md-4 col-xs-4">
+                                <div>
+                                    <span class="fa fa-soundcloud fa-5x main_resize"></span>
+                                </div>
+                                <header>
+                                    <h3><a href="#">ERP Cloud</a></h3>
+                                    <p class="main_service_content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem nesciunt, illo esse sequi vel officia, laboriosam voluptate alias hic sapiente cum amet, optio quaerat mollitia asperiores necessitatibus velit! Consequatur, mollitia.</p>
+                                </header>
+                            </article>
+                        </div>
+                    </div>
+                    <div id="main_product" class="col-md-12"><!--Productos-->
+                        <hgroup class="main_titlewrap">
+                            <h3 class="main_title">PRODUCTOS</h3>
+                        </hgroup>
+                        <div id="main_product_image">
+                            <div class="col-md-3 col-xs-3">
+                                <a href="./img/3.jpg" data-lightbox="set-image-product" data-title="My caption">
+                                    <img src="./img/3.jpg" class="img-responsive img-thumbnail" alt="Responsive image">
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-xs-3">
+                                <a href="./img/4.jpg" data-lightbox="set-image-product" data-title="My caption">
+                                    <img src="./img/4.jpg" class="img-responsive img-thumbnail" alt="Responsive image">
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-xs-3">
+                                <a href="./img/5.jpg" data-lightbox="set-image-product" data-title="My caption">
+                                    <img src="./img/5.jpg" class="img-responsive img-thumbnail" alt="Responsive image">
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-xs-3">
+                                <a href="./img/7.jpg" data-lightbox="set-image-product" data-title="My caption">
+                                    <img src="./img/7.jpg" class="img-responsive img-thumbnail" alt="Responsive image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--VIDEOS========================================================-->
+            <div class="section" id="section2">
+                <div id="main_video_container" style="overflow:hidden;">
+                    <video autoplay loop muted id="youtube_video">
+                        <source src="videos/flowers.mp4" type="video/mp4">
+                        <source src="videos/flowers.webm" type="video/webm">
+                    </video>    
+                </div>
+            </div>
+        </div>
+        
+
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>-->
+        <script src="js/vendor/jquery-1.10.2.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/jquery.fullPage.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.easing.1.3.js"></script>
+        <script src="js/wow.min.js"></script>
+        <script src="js/jquery.ce_slide.js"></script>
+        <script src="js/lightbox.min.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+            new WOW().init();
+            $(document).ready(function(){
+                $('#fullpage').fullpage({
+                    sectionsColor: ['#1088D8', '#fff', '#1088D8'],
+                    navigation: true,
+                    navigationPosition: 'right',
+                    navigationTooltips: ['Presentación', 'Servicios y Productos', 'Videos'],
+
+                });
+
+                $('#slide').css({
+                    'margin-top':$('#main-container').height()+'px',
+                    height:$(window).height()-$('#main-container').height()
+                });
+                $('#main_proyect').css({
+                    'margin-top':$('#main-container').height()+'px',
+                    height:$(window).height()-$('#main-container').height()
+                }); 
+                $('#main_video_container').children('video').css({
+                    'margin-top':$('#main-container').height()+'px',
+                    height:$(window).height()-$('#main-container').height()
+                });
+                main_display_responsive([$('.main_service_content'),$('#main_product').children('hgroup')]);
+                $(window).resize(function(){
+                    $('#slide').css('height',$(window).height()-$('#main-container').height());
+                    $('#main_proyect').css('height',$(window).height()-$('#main-container').height());
+                    $('#main_video_container').children('video').css('height',$(window).height()-$('#main-container').height());
+                    main_resizeMe($(window).height(),$(window).width(),$('.main_resize'));
+                    main_display_responsive([$('.main_service_content'),$('#main_product').children('hgroup')]);
+                });
+                
+                $('.ce_slide_classical').ce_slide({
+                    ce_container:$('#slide'),
+                    ce_interval:3000
+                });
+
+                $('#youtube_video').get(0).play();
+
+            });
+        </script>
     </body>
 </html>
