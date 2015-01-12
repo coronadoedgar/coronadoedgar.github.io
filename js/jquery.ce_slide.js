@@ -36,8 +36,8 @@
 						cursor: 'pointer'
 					});
 					v_element.children('img').css({
-						height:20+'px',
-						width:20+'px'
+						height:30+'px',
+						width:30+'px'
 					});
 					break;
 				case 'hide':
@@ -94,7 +94,7 @@
 						var el_carousel_content=el_li.children('img');
 						if(el_li.attr('class')=='ce_slide_item_video'){
 							o.options.ce_margin_top=($(el_li.data('margin:top')).height());
-							el_carousel_video=$('<div class="container"><div class="carousel-caption"><p class="wow bounceIn" data-wow-delay="0.3s"><a id="btn_video" class="btn btn-lg btn-primary" href="#" role="button" data-thrower:video="'+el_li.data('url:video')+'">Play video</a></p></div></div>');
+							el_carousel_video=$('<div class="container"><div class="carousel-caption"><h1>Todos lo viernes un video</h1><h3>Tema: Gestión contable de una empresa</h3><p class="wow bounceIn" data-wow-delay="0.3s"><a id="btn_video" class="btn btn-lg btn-primary" href="#" role="button" data-thrower:video="'+el_li.data('url:video')+'">Play video</a></p></div></div>');
 						}else{
 							el_carousel_video='';
 						}
