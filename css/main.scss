@@ -1,13 +1,9 @@
 ---
 ---
 
-html{
-    background-color: #333;
-}
-
 body{
-	@extend html;
-	color: #fff;
+	font-family: 'PT Sans', sans-serif;
+	font-size: 18px;
 }
 
 #main-container{
@@ -16,17 +12,34 @@ body{
 
 #main-menu li{
 	a{
-		color: #505961;
+		color: #fff;
 	    -webkit-transition: all .3s;
 	    -o-transition: all .3s;
 	    transition: all .3s;
 	}
-	a.main_active, a:hover{
+	a.main-active, a:hover{
 		color: #fff;
     	box-shadow: 0 84px 0 #ce564e inset;
 	}
 }
 
-#home{
+.container-home{
 	margin-top: 50px;
+}
+
+.container-parallax{
+	@extend .container-home;
+	height: 500px;
+	background-repeat: no-repeat;
+	background-color: #000;
+	.section-parallax{
+		@extend .container-home;
+    	height: 500px;
+    	display: table;
+    	width: 100% !important;
+    	div{
+			display: table-cell;
+			vertical-align: middle;
+		}
+	}
 }

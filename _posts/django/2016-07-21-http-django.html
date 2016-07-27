@@ -1,0 +1,78 @@
+---
+layout: post
+title: "Http"
+categories: [django]
+img: img-16-1.jpg
+---
+
+<div class="col-lg-7">
+	<h3><strong>Hypertext Transfer Protocol</strong></h3>
+	<p>
+		Es el protocolo de comunicación que permite las transferencias de información en la Worl Wide Web.
+	</p>
+	<p class="text-justify">
+		Http es un protocolo <strong>sin estado</strong>, es decir, no guarda ninguna información sobre conexiones anteriores.
+		En el desarrollo web se necesita frecuentemente mantener el estado. Para esto se usan las <strong>cookies</strong>, que es información que un servidor pueda almacenar en el sistema cliente.
+		Esto le permite a las aplicaciones web trabajar la noción de "sesión", y también permite rastrear usuarios ya que las cookies pueden guardarse en el cliente por tiempo indeterminado.
+	</p>
+</div>
+<div class="col-lg-5">
+	<br/>
+	<br/>
+	<table class="table table-bordered">
+		<tr class="active">
+			<td><strong>Aplicación</strong></td>
+			<td><strong>HTTP</strong></td>
+		</tr>
+		<tr>
+			<td>Transporte</td>
+			<td>TCP</td>
+		</tr>
+		<tr>
+			<td>Red</td>
+			<td>IP</td>
+		</tr>
+	</table>
+</div>
+<div class="col-xs-12">
+	<img src="{{ "/img/posts/http_django.png" | prepend: site.baseurl }}" class="img-responsive" alt="http django"/>
+</div>
+<div class="col-lg-6">
+	<h3 class="text-center"><strong>Método de petición</strong></h3>
+	<div class="col-xs-6">
+		<ul>
+			<li>HEAD</li>
+			<li>GET</li>
+			<li>POST</li>
+			<li>PUT</li>
+			<li>DELETE</li>
+			<li>TRACE</li>
+			<li>PATCH</li>
+			<li>SEARCH</li>
+			<li>COPY</li>
+		</ul>	
+	</div>
+	<div class="col-xs-6">
+		<ul>
+			<li>LOCK</li>
+			<li>UNLOCK</li>
+			<li>MOVE</li>
+			<li>MKCOL</li>
+			<li>PROPFIND</li>
+			<li>PROPPATCH</li>
+			<li>MERGE</li>
+			<li>UPDATE</li>
+			<li>LABEL</li>
+		</ul>
+	</div>
+</div>
+<div class="col-lg-6">
+	<h3 class="text-center"><strong>Códigos de respuesta</strong></h3>
+	<ul>
+		<li>1xx: Respuesta informativa. Indica que la petición ha sido recibida y se está procesando.</li>
+		<li>2xx: Respuesta correcta. Indica que la petición ha sido procesada correctamente.</li>
+		<li>3xx: Respuesta de redirección. Indica que el cliente necesita realizar más acciones para finalizar la petición</li>
+		<li>4xx: Errores causados por el cliente. Indica que ha habido un error en el proceso de la petición a causa de que el cliente ha hecho algo mal.</li>
+		<li>5xx: Errores causados por el servidor. Indica que ha habido un error en el proceso de la petición a causa de un fallo en el servidor.</li>
+	</ul>
+</div>

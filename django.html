@@ -1,0 +1,14 @@
+---
+layout: page
+title: Django
+img: django.jpg
+---
+
+<div class="row">
+	<h1 class="text-center">Índice</h1>
+	<ol>
+		{% for post_django in site.categories.django %}
+			<li><a href="{{ post_django.url | prepend: site.baseurl }}">{{post_django.title}}</a></li>
+		{% endfor%}
+	</ol>
+</div>
