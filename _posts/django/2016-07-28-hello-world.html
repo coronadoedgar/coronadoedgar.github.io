@@ -1,0 +1,62 @@
+---
+layout: post
+title: "Hola Mundo"
+categories: [django]
+img: img-16-3.jpg
+---
+
+<div class="col-lg-12">
+	<div class="col-lg-6">
+		<h3><strong>Prerequisito</strong></h3>
+		<ul>
+			<li>Virtualenv</li>
+			<li>Python 3.5.x</li>
+			<li>Django 1.9.x</li>
+		</ul>
+	</div>
+	<div class="col-lg-6">
+		<img src="{{ "/img/posts/virtualenv_logo.png" | prepend: site.baseurl}}" class="img-responsive" alt="logo virtualenv"/>
+	</div>	
+</div>
+<div class="col-lg-12">
+	<div class="col-lg-6">
+		<h3><strong>Tips</strong></h3>
+		<ol>
+			<li>
+				<strong>Localización del directorio site-packages python:</strong><br>
+				python -c "import sys, pprint; pprint.pprint(sys.path)"
+			</li>
+			<li>
+				<strong>Localización del directorio Django:</strong><br>
+				import django <br>
+				django.__path__ <br>
+				django.VERSION
+			</li>
+			<li>
+				<strong>Obetner Django</strong><br>
+				pip install Django==1.9.7
+			</li>
+		</ol>
+	</div>
+	<div class="col-lg-6">
+		<img src="{{ "/img/posts/python_logo.png" | prepend: site.baseurl}}" class="img-responsive" alt="logo virtualenv" style="height:180px;"/>
+	</div>
+</div>
+<div class="col-lg-12">
+	<div class="col-lg-6">
+		<h3><strong>Crear proyecto</strong></h3>
+		<ol>
+			<li>django startproject misitio</li>
+			<li>cd misitio && python manage.py migrate</li>
+			<li>python manage.py createsuperuser</li>
+			<li>python manage.py runserver</li>
+		</ol>
+	</div>
+	<div class="col-lg-6">
+		<img src="{{ "/img/posts/django_logo.jpg" | prepend: site.baseurl}}" class="img-responsive" alt="logo django" style="height:180px;"/>
+	</div>
+</div>
+<div class="col-lg-12">
+	<h3><strong>localhost:8000</strong></h3>
+	<img src="{{ "/img/posts/hello_world.png" | prepend: site.baseurl}}" class="img-responsive" alt="localhost">
+</div>
