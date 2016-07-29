@@ -40,3 +40,8 @@ http://www.franckmaurin.com/blog/the-parallax-effect-with-jquery/
 
 
 <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+
+
+https://jekyllrb.com/docs/configuration/
+http://commonmark.org/help/
+http://programacion.net/articulo/los_6_mejores_e-books_en_ingles_sobre_usabilidad_1516

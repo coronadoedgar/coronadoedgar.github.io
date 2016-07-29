@@ -1,0 +1,127 @@
+---
+layout: post
+title: "URL's"
+categories: [django]
+img: img-16-3.jpg
+---
+
+<div class="col-lg-12">
+	<h3><strong>Vista</strong></h3>
+	<p>
+		Una vista es sólo una función Python, que toma como primer argumento una petición <strong>HttpRequest</strong> y retorna como respuesta  una instancia de <strong>HttpResponse</strong>.
+	</p>
+	<div class="col-lg-6">
+		<strong>misitio/misitio/views.py</strong>
+
+{% highlight python %}
+from django.http import HttpResponse, Http404
+import datetime
+
+
+def hola(request):
+    return HttpResponse('Hola Mundo')
+
+def horas_adelante(request, offset):
+    try:
+        offset = int(offset)
+    except:
+        raise Http404
+    dt = datetime.datetime.now() + datetime.timedelta(hours=offset)
+    html = "<html><body><h1>En %s horas(s), serán:</h1><h3>%s</h3></body></html>" % (offset, dt)
+    return HttpResponse(html)
+
+{% endhighlight %}
+	</div>
+	<div class="col-lg-6">
+		<strong>misitio/misitio/url.py</strong>
+{% highlight python %}
+from django.conf.urls import url
+from django.contrib import admin
+from .views import hola, horas_adelante
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'^$', hola),
+    url(r'^fecha/mas/(\d{1,2})/$', horas_adelante),
+]
+
+{% endhighlight %}
+	</div>
+</div>
+<div>
+<div class="col-lg-12">
+	<h3><strong>URLconfs y acoplamiento débil</strong></h3>
+	<ul>
+		<li>
+			<strong>Loose Coupling</strong><br>
+			<p>Si dos piezas de código están débilmente acopladas (losely coupled) los cambios 	realizados sobre una de dichas piezas va tener poco efecto sobre la otra.</p>
+		</li>
+		<li>
+			<strong>Expresiones regulares o regexes</strong><br/>
+			<a href="https://pymotw.com/2/re/" target="_blank">https://pymotw.com/2/re/</a><br/>
+			<a href="http://www.tutorialspoint.com/python/python_reg_expressions.htm" target="_blank">http://www.tutorialspoint.com/python/python_reg_expressions.htm</a><br/>
+			<a href="https://docs.python.org/2/library/re.html" target="_blank">https://docs.python.org/2/library/re.html</a>
+			<div class="row">
+				<div class="col-lg-6">
+					<table class="table table-bordered">
+						<tr>
+							<td>. (punto)</td>
+							<td>Cualquier caracter</td>
+						</tr>
+						<tr>
+							<td>\d</td>
+							<td>Cualquier dígito</td>
+						</tr>
+						<tr>
+							<td>[A-Z]</td>
+							<td>Cualquier caracter, A-Z (mayúsculas)</td>
+						</tr>
+						<tr>
+							<td>[a-z]</td>
+							<td>Cualquier caracter, a-z (minúsculas)</td>
+						</tr>
+						<tr>
+							<td>[A-Za-z]</td>
+							<td>Cualquier caracter, a-z (no distingue entre mayúscula y minúscula)</td>
+						</tr>
+						<tr>
+							<td>+</td>
+							<td>Una o más ocurrencias de la expresión anterior (ejemplo, \d+ coincidirá con uno o más dígitos)</td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-lg-6">
+					<table class="table table-bordered">
+						<tr>
+							<td>[^/]+</td>
+							<td>Cualquier caracter excepto la barra o diagonal.</td>
+						</tr>
+						<tr>
+							<td>?</td>
+							<td>Cero o una ocurrencia (ejemplo \d? coincidirá con cero o un dígito</td>
+						</tr>
+						<tr>
+							<td>*</td>
+							<td>Cero o más ocurrencias de la expresión anterior (ejemplo, \d* coincidirá con cero o más dígitos)</td>
+						</tr>
+						<tr>
+							<td>{1,3}</td>
+							<td>Entre una y tres (inclusive) ocurrencias de la expresión anterior (ejemplo \d{1,3} coincidirá con uno, dos o 			tres dígitos)</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
+<div class="col-lg-12">
+	<h3><strong>¿Cómo procesa una petición Django?</strong></h3>
+	<ol>
+		<li>Cuando llega una petición HTTP desde el navegador, un manejador específico a cada servidor construye la HttpRequest, para pasarla a los componentes y manejar el flujo del procesamiento de la respuesta.</li>
+		<li>El manejador luego llama a cualquier middleware de Petición o Vista disponible. Estos tipos de middleware son útiles para aumentar los objetos HttpRequest así como también para proveer un manejo especial a determinados tipos de peticiones. En el caso de que alguno de los mismos retornara un HttpResponse la vista no es invocada.</li>
+		<li>Hasta a los mejores programadores se le escapan errores (bugs), pero el middleware de excepción ayuda a aplastarlos. Si una función de vista lanza una excepción, el control pasa al middleware de Excepción. Si este middleware no retorna un HttpResponse, la excepción se vuelve a lanzar.</li>
+		<li>Sin embargo, no todo está perdido. Django incluye vistas por omisión para respuestas amigables a errores 404 y 500.</li>
+		<li>Finalmente, el middleware de respuesta es bueno para el procesamiento posterior a un HttpResponse justo antes de que se envíe al navegador o haciendo una limpieza de recursos específicos a una petición.</li>
+	</ol>
+	<img src="{{ "/img/posts/url_django.png" | prepend: site.baseurl}}" class="img-responsive" alt="http django">
+</div>
