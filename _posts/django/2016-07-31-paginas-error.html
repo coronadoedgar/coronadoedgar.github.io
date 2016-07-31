@@ -1,0 +1,67 @@
+---
+layout: post
+title: "Páginas de error bonitas con Django"
+categories: [django]
+img: img-16-4.jpg
+---
+
+<div class="col-lg-12">
+	<p class="text-justify">
+		¿Eres el tipo de programador al que le gusta depurar con la ayuda de sentencias print cuidadosamente colocadas? Puedes usar la página de error de Django para hacer eso sin usar la sentencia print.
+	</p>
+{% highlight python %}
+from django.http import HttpResponse, Http404
+
+
+def horas_adelante(request, offset):
+    """
+    try:
+        offset = int(offset)
+    except:
+        raise Http404
+    """
+    dt = datetime.datetime.now() + datetime.timedelta(hours=offset)
+    html = "<html><body><h1>En %s horas(s), serán:</h1><h3>%s</h3></body></html>" % (offset, dt)
+    return HttpResponse(html)
+
+{% endhighlight%}
+</div>
+<div class="col-lg-12 text-center">
+	<h3>Al ejecutar, se muestra una página de error.</h3>
+	<strong>La página de error es mostrada sólo cuando el proyecto está en modo depuración</strong>
+	<img src="{{ "/img/posts/type_error.png" | prepend: site.baseurl}}" class="img-responsive"/>
+</div>
+<br>
+<div class="col-lg-12 text-justify">
+	<ul>
+		<li>
+			En la parte superior de la página se muestra la información clave de la excepción, el mensaje: <strong>unsopported type</strong> en este caso. En <strong>Exception Location</strong> se muestra la ubicación que lanza la excepción.
+		</li>
+		<li>
+			La traza de error o <strong>Traceback</strong>, muestra la ubicación del archivo, la función/método, el número de la línea y el código fuente de esa línea. Haz clic en la línea de código (en gris oscuro) para ver las líneas anteriores y posteriores a la línea errónea, lo que nos brinda un poco mas de contexto.
+		</li>
+		<li>
+			Haz clic debajo de <strong>Locals vars (variables locales)</strong> sobre el marco de la pila para ver la tabla completa de todas las variables locales y sus valores, este marco muestra la posición exacta del código en el cual fue lanzada la excepción. Esta información de depuración es invaluable y muy privada.
+		</li>
+		<li>
+			Observa que el texto <strong>Switch to copy-and-paste view (cambia a copiar y
+			pegar)</strong>  debajo de la cabecera de la traza de error. Haz clic en esas palabras, y la traza cambiará a una versión que te permitirá fácilmente copiar y pegar. Usa esto para cuando necesites compartir la traza de error de la excepción con otros o para obtener soporte técnico.
+		</li>
+		<li>
+			Debajo del boton <strong>Share this traceback on a public Web site (comparte esta traza de error en un sitio publico)</strong> puedes hacer clic en el boton, para postear la traza en un sitio público como <a href="http://www.dpaste.com/" target="_blank">http://www.dpaste.com/</a> , donde podrás pegarlo a una URL, cada vez que decidas compartirlo con otras personas.
+		</li>
+		<li>
+			A continuación, la sección <strong>Request information</strong> incluye una gran cantidad de información sobre la petición Web que provocó el error: información GET y POST, valores de las cookies y meta información, así como las cabeceras CGI.
+		</li>
+		<li>
+			Más abajo, en la sección <strong>Settings</strong> se encuentra la lista de configuraciones de la instalación de Django en particular
+		</li>
+	</ul>
+</div>
+<br>
+<br>
+<div class="col-lg-12 text-justify">
+	<p>
+		En cualquier lugar de una vista, temporalmente puedes insertar un assert False para provocar una página de error. Luego, podras ver las variables locales y el estado del programa. <strong>(Hay maneras más avanzadas de depurar las vistas en Django, lo explicaremos más adelante, pero esta es la forma más rápida y fácil).</strong>
+	</p>
+</div>
