@@ -13,7 +13,7 @@ img: img-16-3.jpg
 	<div class="col-lg-6">
 		<strong>misitio/misitio/views.py</strong>
 
-{% highlight python %}
+{% highlight python linenos %}
 from django.http import HttpResponse, Http404
 import datetime
 
@@ -34,7 +34,7 @@ def horas_adelante(request, offset):
 	</div>
 	<div class="col-lg-6">
 		<strong>misitio/misitio/url.py</strong>
-{% highlight python %}
+{% highlight python linenos %}
 from django.conf.urls import url
 from django.contrib import admin
 from .views import hola, horas_adelante
