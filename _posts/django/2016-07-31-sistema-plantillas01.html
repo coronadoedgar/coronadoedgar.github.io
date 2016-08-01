@@ -1,0 +1,203 @@
+---
+layout: post
+title: "Sistema de plantillas 1"
+categories: [django]
+img: img-16-5.jpg
+---
+
+<div class="col-lg-12 text-justify">
+	<p>
+		Una plantilla de Django es una cadena de texto que pretende separar la presentación de los datos.
+	</p>
+	<p>
+		Una plantilla define rellenos y diversos bits de lógica básica (etiquetas de plantillas), que regulan cómo debe ser mostrado el documento.
+	</p>
+	<p>
+		Cualquier texto que esté rodeado por llaves y signos de porcentaje es una etiqueta de plantilla. Una etiqueta sólo le indica al sistema de plantilla "haz algo".
+	</p>
+	<p>
+		Normalmente las plantillas son usadas para producir HTML, pero las plantillas de Django son capaces de generar cualquier formato basado en texto.
+	</p>
+</div>
+<div class="col-lg-12">
+	<h3 class="text-center">
+		Usando el sistema de plantilla
+	</h3>
+	<p>
+		El sistema de plantilla es sólo una librería de código Python, se puede utilizar en cualquier parte, no solo en la vista de Django.
+	</p>
+	<div class="col-lg-6">
+		<h4><strong>Renderizar una plantilla - Forma Básica</strong></h4>
+		<ol>
+			<li>
+				Crea un objeto Template pasándole el código en crudo de la plantilla como
+				una cadena.
+			</li>
+			<li>
+				Llama al método render() del objeto Template con un conjunto de variables (o sea, el contexto). Este retorna una plantilla totalmente renderizada como una cadena de caracteres, con todas las variables y etiquetas de bloques evaluadas de acuerdo al contexto.
+			</li>
+		</ol>
+	</div>
+	<div class="col-lg-6">
+{% highlight python linenos %}
+from django.template import Template, Context
+t = Template('Mi nombre es {{nombre}}')
+c = Context({'nombre': 'Edgar'})
+print(t.render(c))
+Mi nombre es Edgar
+
+{% endhighlight%}
+
+		<strong>Nota:</strong>
+		<p>
+			El valor que retorna t.render(c) es un objeto unicode soportado navitamente en Python3.
+		</p>
+	</div>
+	<div class="col-lg-12">
+		<h4><strong>Renderizar una plantilla - Forma Básica</strong></h4>
+		<ul>
+			<li>
+				bloques de etiquetas inválidos
+			</li>
+			<li>
+				argumentos inválidos para una etiqueta válida
+			</li>
+			<li>
+				filtros inválidos
+			</li>
+			<li>
+				argumentos inválidos para filtros válidos
+			</li>
+			<li>
+				sintaxis inválida de plantilla
+			</li>
+			<li>
+				etiqueta de bloque sin cerra
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div class="col-lg-12">
+	<h3 class="text-center">
+		Búsqueda del contexto de una variable
+	</h3>
+	<p>
+		El sistema de plantilla maneja estructuras de datos complicadas como: listas, diccionarios y objetos personalizados.
+	</p>
+	<div class="col-lg-6">
+		<h4><strong>Diccionarios</strong></h4>
+{% highlight python linenos %}
+{% raw %}
+from django.template import Template,Context
+persona={'nombre': 'Edgar', 'edad': '23'}
+t=Template('{{persona.nombre}} tiene {{persona.edad}}')
+c=Context({'persona': persona})
+t.render(c)
+'Edgar tiene 23'
+
+{% endraw %}
+{% endhighlight%}
+	</div>
+	<div class="col-lg-6">
+		<h4><strong>Objetos</strong></h4>
+{% highlight python linenos %}
+{% raw %}
+import datetime
+d=datetime.date(2016,7,30)
+t=Template('El mes es {{my_date.month}} y el dia {{my_date.day}}')
+c=Context({'my_date':d})
+t.render(c)
+'El mes es 7 y el dia 30'
+
+{% endraw %}
+{% endhighlight%}
+	</div>
+	<div class="col-lg-6">
+		<h4><strong>Clases personalizadas</strong></h4>
+{% highlight python linenos %}
+{% raw %}
+class Persona(object):
+	def __init__(self, nombre, apellido):
+		self.nombre, self.apellido = nombre, apellido
+
+t = Template('Hola {{persona.nombre}} {{persona.apellido}}')
+c = Context({'persona': Persona('Edgar', 'Coronado')})
+t.render(c)
+'Hola Edgar Coronado'
+
+{% endraw %}
+{% endhighlight%}
+	</div>
+	<div class="col-lg-6">
+		<h4><strong>Métodos de los objetos</strong></h4>
+{% highlight python linenos %}
+{% raw %}
+t=Template('{{var}} -- {{var.upper}} - {{var.isdigit}}')
+t.render(Context({'var': 'hola'}))
+'hola -- HOLA - False'
+t.render(Context({'var': '123'}))
+'123 -- 123 - True'
+
+{% endraw %}
+{% endhighlight%}
+
+		<strong>Nota:</strong>
+		<p>
+			No tienes que incluír los paréntesis en las llamadas a los métodos, tampoco es posible pasar argumentos a los métodos. <strong>Sólo puedes llamar a los métodos que no requieran argumentos.</strong>
+		</p>
+	</div>
+	<div class="col-lg-6">
+		<h4><strong>Listas</strong></h4>
+{% highlight python linenos %}
+{% raw %}
+t = Template('Fruta 2 es {{ frutas.2 }}.')
+c= Context({'frutas': ['manzana', 'naranja', 'mandarina']})
+t.render(c)
+'Fruta 2 es mandarina'
+
+{% endraw %}
+{% endhighlight%}
+
+		<strong>Nota:</strong>
+		<p>
+			Los índices negativos de las listas no está permitidos. &#123;{frutas.-1}} causará un TemplateSyntaxError
+		</p>
+	</div>
+</div>
+<div class="col-lg-12">
+	<h4><strong>En resumen</strong></h4>
+	<div class="col-lg-6">
+		<p>
+			Cuando el sistema de plantillas encuentra un punto en una variable, intentará buscar en este orden:
+		</p>
+		<ol>
+			<li>
+				Diccionario
+			</li>
+			<li>
+				Atributo
+			</li>
+			<li>
+				Método de objeto
+			</li>
+			<li>
+				Índice de lista
+			</li>
+		</ol>
+	</div>
+	<div class="col-lg-6">
+		<p>
+			Los puntos pueden ser anidados a múltiples niveles de profundidad:
+		</p>
+{% highlight python linenos %}
+{% raw %}
+persona= {'nombre': 'Edgar'}
+t= Template('{{persona.nombre.upper}}')
+t.render(Context({'persona': persona}))
+'EDGAR'
+
+{% endraw %}
+{% endhighlight%}
+	</div>
+</div>
