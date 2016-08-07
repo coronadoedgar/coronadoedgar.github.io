@@ -4,4 +4,11 @@ title: OpenCV
 img: opencv.png
 ---
 
-<h3>Hola OpenCV</h3>
+<div class="row">
+	<h1 class="text-center">Índice</h1>
+	<ol>
+		{% for post_opencv in site.categories.opencv reversed %}
+			<li><a href="{{ post_opencv.url | prepend: site.baseurl }}">{{post_opencv.title}}</a></li>
+		{% endfor%}
+	</ol>
+</div>

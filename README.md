@@ -45,3 +45,23 @@ http://www.franckmaurin.com/blog/the-parallax-effect-with-jquery/
 https://jekyllrb.com/docs/configuration/
 http://commonmark.org/help/
 http://programacion.net/articulo/los_6_mejores_e-books_en_ingles_sobre_usabilidad_1516
+
+http://programacion.net/articulo/como_crear_un_slide_de_contenido_vertical_horizontal_y_diagonal_con_jquery_1518
+
+http://jwarby.github.io/jekyll-pygments-themes/languages/python.
+http://yeswejekyll.com/
+
+http://www.laizquierdadiario.com/Son-arte-los-videojuegos
+http://bienfun.com/a/2016/07/29/10-consejos-para-mejorar-destrezas-de-programacion-y-ser-mejor-desarrollador/
+http://www.todoautos.com.pe/portal/autos/172-noticias/10641-ingenieros-de-la-uni-buscan-desarrollar-proyecto-para-acabar-con-el-trafico-de-lima
+https://actualidad.rt.com/actualidad/214565-utilidad-retirar-seguro-usb
+
+{% assign items = site.items | sort: 'some_field' | reverse %}
+{% for item in items limit:10 %}
+    <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+{% endfor %}
+
+
+http://programacion.net/articulo/crea_estupendas_figuras_hexagonales_con_css3_puro_1521
+http://forbes.es/actualizacion/5997/las-causas-principales-por-las-que-fallan-las-startups/2
+http://bienfun.com/a/2016/07/29/10-consejos-para-mejorar-destrezas-de-programacion-y-ser-mejor-desarrollador/

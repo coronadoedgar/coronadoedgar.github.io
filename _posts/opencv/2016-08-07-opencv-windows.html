@@ -1,0 +1,35 @@
+---
+layout: post
+title: "OpenCV en Windows"
+categories: [opencv]
+img: img-16-8.jpg
+---
+
+<div class="col-lg-12">
+	<ol>
+		<li>Descargar Opencv: <a href="http://opencv.org/downloads.html" target="_blank">http://opencv.org/downloads.html</a>
+		</li>
+		<br>
+		<li>Copiar en el directorio: C:\OpenCV-version
+			<img src="{{ "/img/posts/directorio-opencv.png" | prepend: site.baseurl}}" class="img-responsive" alt="directorio opencv"/>
+			<p>Luego ingresar a: <strong>C:\OpenCV-version\opencv\build\python\2.7\x86</strong></p>
+			<p>Copiar cv2.pyd a <strong>C:\Python27\Lib\site-packages</strong></p>
+		</li>
+		<br>
+		<li>Agregar a las variables del sistema, <strong>C:\OpenCV-version\opencv\build\x64\vc12\bin</strong>
+			<img src="{{ "/img/posts/variables-sistema.png" | prepend: site.baseurl}}" class="img-responsive" alt="variables del sistema"/>
+		</li>
+		<br>
+		<li>Para desarrollar aplicaciones con OpenCV utilizaremos Visual Studio Community, verificamos Python Environments.
+			<img src="{{ "/img/posts/vs-python-environments.png" | prepend: site.baseurl }}" class="img-responsive" alt="python environments"/>
+		</li>
+		<br>
+		<li>Crear aplicación Python.
+			<img src="{{ "/img/posts/app-python-opencv.png" | prepend: site.baseurl}}" class="img-responsive" alt="app python opencv"/>
+		</li>
+		<br>
+		<li>A continuación los requisitos que serán necesarios para empezar a programar.
+			<img src="{{ "/img/posts/requisitos-python-opencv.png" | prepend: site.baseurl}}" class="img-responsive" alt="requisitos python opencv"/>
+		</li>
+	</ol>
+</div>
