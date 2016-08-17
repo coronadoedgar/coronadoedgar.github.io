@@ -17,7 +17,9 @@ url: "http://127.0.0.1:5675" # the base hostname & protocol for your site
 #twitter_username: jekyllrb
 #github_username:  jekyll
 
+timezone: America/Lima
 # Build settings
 #highlighter: pygments
+encoding:     "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 markdown: kramdown

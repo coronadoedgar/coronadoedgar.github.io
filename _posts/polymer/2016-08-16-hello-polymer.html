@@ -1,0 +1,59 @@
+---
+layout: post
+title: "Hola Polymer"
+categories: [polymer]
+img: img-16-9.jpg
+---
+
+<div class="col-lg-12">
+	<h4><strong>¿Porqué usar Polymer?</strong></h4>
+	<ul>
+		<li>Recicla tu código.</li>
+		<li>Modulariza tu app.</li>
+		<li>Separa tu aplicación en componentes.</li>
+		<li>Reusa otros componentes del trabajo de otras personas.</li>
+		<li>Comunidad que desarrolla muchos custom-elements .</li>
+	</ul>
+	<h4><strong>Instalar Polymer CLI</strong></h4>
+	<ol>
+		<li><strong>Instalar NodeJS</strong>
+		<a href="https://nodejs.org/en/download/package-manager/" target="_blank">https://nodejs.org/en/download/package-manager/</a>
+{% highlight ruby linenos %}
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+apt-get install -y nodejs
+{% endhighlight %}
+		</li>
+		<li><strong>Instalar Bower</strong>
+{% highlight ruby linenos %}
+npm install -g bower
+{% endhighlight %}
+		</li>
+		<li><strong>Instalar Polymer CLI</strong>
+{% highlight ruby linenos %}
+npm install -g polymer-cli
+{% endhighlight %}
+		</li>
+	</ol>
+	<h4><strong>Más info:</strong></h4>
+	<a href="https://www.polymer-project.org/1.0/docs/tools/polymer-cli" target="_blank">https://www.polymer-project.org/1.0/docs/tools/polymer-cli</a>
+	<br>
+	<br>
+	<h4><strong>Crear proyecto elemento.</strong></h4>
+{% highlight ruby linenos %}
+1) crear carpeta:
+polymer/edg-element
+
+2) ingresar a la carpeta:
+polymer init
+
+3) seleccionamos la opción:
+element
+
+4) ingresar nombre, descripción.
+
+5) iniciar el servicio: polymer server, en mi caso estoy trabajando con una máquina virtual (https://coronadoedgar.wordpress.com/2016/06/07/configurar-firewall-en-ubuntu/), por ello modifico el parámeto host:
+polymer serve --hostname '0.0.0.0'
+
+{% endhighlight%}
+	<img src="{{ "/img/posts/creando_mi_elemento_polymer.png" | prepend: site.baseurl}}" class="img-responsive"/>
+</div>

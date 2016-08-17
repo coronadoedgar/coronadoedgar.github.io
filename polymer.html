@@ -1,0 +1,14 @@
+---
+layout: page
+title: Polymer
+img: p-logo.png
+---
+
+<div class="row">
+	<h1 class="text-center">Índice</h1>
+	<ol>
+		{% for post_polymer in site.categories.polymer reversed %}
+			<li><a href="{{ post_polymer.url | prepend: site.baseurl }}">{{post_polymer.title}}</a></li>
+		{% endfor%}
+	</ol>
+</div>
