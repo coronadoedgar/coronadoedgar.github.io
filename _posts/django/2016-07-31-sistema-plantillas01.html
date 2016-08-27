@@ -40,12 +40,14 @@ img: img-16-5.jpg
 	</div>
 	<div class="col-lg-6">
 {% highlight python linenos %}
+{% raw %}
 from django.template import Template, Context
 t = Template('Mi nombre es {{nombre}}')
 c = Context({'nombre': 'Edgar'})
 print(t.render(c))
 Mi nombre es Edgar
 
+{% endraw %}
 {% endhighlight%}
 
 		<strong>Nota:</strong>
