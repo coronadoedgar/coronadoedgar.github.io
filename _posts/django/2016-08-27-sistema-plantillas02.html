@@ -1,0 +1,106 @@
+---
+layout: post
+title: "Sistema de plantillas 2"
+categories: [django]
+img: img-16-10.jpg
+---
+<div class="col-lg-12 text-justify">
+	No es buena idea codificar, mezclar e inscrustar directamente el HTML en las vistas, ya que este convenio conduce a problemas severos.
+	<h3>Motivos:</h3>
+	<ol>
+		<li>
+			El diseño de un sitio tiende a cambiar más frecuentemente que el código de Python, por lo que sería conveniente si el diseño podría ser cambiado sin la necesidad de modificar el código Python.
+		</li>
+		<li>
+			Escribir código Python y deseñar HTML son dos disciplinas diferentes, diseñadores no deberían tener que editar código Python para conseguir hacer su trabajo.
+		</li>
+		<li>
+			Es más eficiente si los programadores pueden trabajar sobre el código Python y los diseñadores sobre las plantillas al mismo tiempo en vez de esperar terminar un archivo que contiene Python y HTML.
+		</li>
+	</ol>
+	Por estas razones, es mucho más limpio y mantenible separar el diseño de la página del código Python.
+</div>
+
+<div class="col-lg-12">
+	<h3 class="text-center">
+		<strong>Comportamiento de la llamado a los métodos</strong>
+	</h3>
+	<ol>
+		<li>
+			Si durante la búsqeda de método, se produce una excepción, la excepción será propagada, a menos que la excepción tenga una atributo <strong>silent_variable_failure</strong> cuyo valor sea True.
+		</li>
+		<li>
+			Si la excepción contiene el atribute <strong>silent_variable_failure</strong> la variable será renderiza como un string vacío.
+
+{% highlight python linenos %}
+{% raw %}
+from django.template import Template, Context
+
+t = Template("Mi nombre es: {{persona.nombre}}.")
+
+#Primer intento
+class Persona1:
+	def nombre(self):
+		raise AssertionError
+
+p = Persona1()
+t.render(Context({'persona': p}))
+Traceback (most recent call last): 
+... 
+AssertionError
+
+
+#Segundo intento
+class SilentAssertionError(AssertionError):
+	silent_variable_failure = True
+
+class Persona2:
+	def nombre(self):
+		raise SilentAssertionError
+
+p = Persona2()
+t.render(Context({'persona': p}))
+'Mi nombre es: .'
+
+{% endraw %}
+{% endhighlight %}
+		</li>
+		<li>
+			La llamada a un método funcionará si el método no requiere argumentos. En otro caso, el sistema pasará a la siguiente búsqueda: índice de lista.
+		</li>
+		<li>
+			Evidentemente, algunos métodos tienen efectos secundarios o posiblemente un agujero de seguridad, por lo que sería absurdo permitir que el sistema de plantillas tenga acceso a ellos.
+
+
+{% highlight python linenos %}
+{% raw %}
+>>> t = Template("borrar: {{cuenta.borrar}}")
+>>> class Cuenta:
+...     def borrar(self):
+...             print("borrado")
+...             return "eliminado cuenta bancaria"
+... 
+>>> c = Cuenta()
+>>> t.render(Context({'cuenta':c}))
+borrado
+'borrar: eliminado cuenta bancaria'
+
+>>> class Cuenta:
+...     def borrar(self):
+...             borrar.alters_data=True
+...             print("Borrado")
+...             return "eliminado cuenta bancaria"
+...
+>>> c = Cuenta()
+>>> t.render(Context({'cuenta':c}))
+Traceback (most recent call last):
+...
+NameError: name 'borrar' is not defined
+{% endraw %}
+{% endhighlight %}
+		</li>
+	</ol>
+	<p>
+		El sistema de plantillas no debería ejecutar cualquier método marcado de esta forma. En otras palabras, si una plantilla incluye <strong>cuenta.borrar</strong> y el método <strong>borrar()</strong>, marcado como <strong>alters_data=True</strong>, esta etiqueta no se ejecutará . Ya que este fallará silenciosamente.
+	</p>
+</div>
