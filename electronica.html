@@ -1,0 +1,16 @@
+---
+layout: page
+title: Electrónica
+img: electronica.jpg
+---
+
+<div class="row">
+	<h1 class="text-center">Índice</h1>
+	<ol>
+		{% for post_elect in site.categories.elect reversed %}
+			<li>
+				<a href="{{ post_elect.url | prepend: site.baseurl }}">{{post_elect.title}}</a>
+			</li>
+		{% endfor%}
+	</ol>
+</div>
