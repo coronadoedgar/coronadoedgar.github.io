@@ -1,0 +1,82 @@
+---
+layout: post
+title: "Mostrar y Escribir Imágenes"
+categories: [opencv]
+img: img-16-14.jpg
+---
+
+<div class="col-lg-12">
+	<h3><strong>Tutorial1: Usando OpenCV</strong></h3>
+	1. Crear archivo <strong>PythonOpenCV</strong>
+{% highlight python linenos %}
+import demo1
+{% endhighlight %}
+	<br/>
+	<div class="row">
+		<div class="col-lg-6">
+			2. Crear archivo <strong>demo1.py</strong>
+{% highlight python linenos %}
+import cv2
+
+#Cargar imagen
+img = cv2.imread('img/adilen.jpg', 0)
+#Mostrar
+cv2.imshow('image', img)
+#Espera KeyPress
+k = cv2.waitKey(0) & 0xFF
+
+if k == 27:
+    #ESC para cerrar
+    cv2.destroyAllWindows()
+elif k == ord('s'):
+    #s para guardar
+    cv2.imwrite('img/miss.jpg', img)
+    cv2.destroyAllWindows()
+
+{% endhighlight %}
+		</div>
+		<div class="col-lg-6">
+			3. En el directorio img agregar imagen: <strong>adilen.jpg</strong>
+			<img src="{{ "/img/posts/adilen.jpg" | prepend: site.baseurl }}" class="img-responsive" alt="adilen"/>
+		</div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col-lg-6">
+			4. Establecer <strong>PythonOpenCV.py</strong> como archivo de inicio
+			<img src="{{ "/img/posts/img2.png" | prepend: site.baseurl }}" class="img-responsive" alt="img2"/>
+		</div>
+		<div class="col-lg-6">
+			5. Ejecutar projecto
+			<img src="{{ "/img/posts/img3.png" | prepend: site.baseurl }}" class="img-responsive" alt="img3"/>
+		</div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col-lg-2"></div>
+		<div class="col-lg-8">
+			6. Presionar la tecla <strong>s</strong> y el resultado será una imagen en blanco y negro.
+			<img src="{{ "/img/posts/miss.jpg" | prepend: site.baseurl }}" class="img-responsive" alt="miss"/>
+		</div>
+		<div class="col-lg-2"/>
+	</div>
+</div>
+<div class="col-lg-12">
+	<h3><strong>Tutorial2: Usando Matplotlib</strong></h3>
+	<div class="col-lg-6">
+		1. Crear archivo <strong>demo2.py</strong>
+{% highlight python linenos %}
+import cv2
+from matplotlib import pyplot as plt
+
+img = cv2.imread('img/adilen.jpg', 0)
+plt.imshow(img, cmap='gray', interpolation='bicubic')
+plt.xticks([]), plt.yticks([])
+plt.show()
+
+{% endhighlight %}
+	</div>
+	<div class="col-lg-6">
+		<img src="{{ "/img/posts/img1.png" | prepend: site.baseurl }}" class="img-responsive" alt="img1"/>	
+	</div>
+</div>
