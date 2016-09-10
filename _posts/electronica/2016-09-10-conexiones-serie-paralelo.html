@@ -1,0 +1,118 @@
+---
+layout: post
+title: "Conexiones en Serie y Paralelo"
+categories: [elect]
+img: img-16-13.jpg
+---
+
+<div class="col-lg-12">
+	<h3><strong>Circuito Eléctrico</strong></h3>
+	<div class="col-lg-6">
+		<p class="text-justify">
+			Es el recorrido o conjunto de recorridos cerrados que siguen las cargas eléctricas formando una o varias corrientes.
+		</p>
+		<p class="text-justify">
+			Los circuitos pueden estar constituídos por generadores, resistencias, condensadores, bobinas, entre otros dispositivos. El circuito más simple está formado por una fuente y una resistencia.
+		</p>
+		<br/>
+		<br/>
+		<p class="text-right">
+			<strong>Esquema de un circuito básico -></strong>
+		</p>
+	</div>
+	<div class="col-lg-6">
+		<img src="{{ "/img/posts/circuito_electrico.jpg" | prepend: site.baseurl }}" class="img-responsive" alt="circuito eléctrico"/>
+	</div>
+</div>
+<div class="col-lg-12">
+	<h3><strong>Instalación eléctrica</strong></h3>
+	<div class="col-lg-6">
+		<p class="text-justify">
+			Una instalación eléctrica es el conjunto de circuitos eléctricos. Incluye equipos necesarios para asegurar su correcto funcionamiento y la conexión con los aparatos eléctricos correspondientes.
+		</p>
+	</div>
+	<div class="col-lg-6">
+		<img src="{{ "/img/posts/instalacion_electrica.png" | prepend: site.baseurl }}" class="img-responsive" alt="instalación eléctrica"/>
+	</div>
+	<p class="text-justify">
+		Los elementos de un circuito pueden montarse de dos formas diferentes.
+	</p>
+	<ol>
+		<li class="col-lg-12">
+			<strong>Conexión en serie</strong><br/>
+			<p class="text-justify">
+				La terminal de salida de un dispositivo se conecta a la terminal de entrada del dispositivo siguiente, en otras palabras, se une el polo negativo de un elemento al polo positivo del siguiente, y así sucesivamente.
+			</p>
+			<div class="col-lg-6">
+				<strong>En una linterna o control remoto de TV colocamos las pilas en serie, este se hace para que los voltajes de cada pila se sumen.</strong>
+				<img src="{{ "/img/posts/conexion_serie.png" | prepend: site.baseurl }}" class="img-responsive" alt="conexión en serie"/>
+				<br/><br/><br/>
+				<p class="text-right">
+					<strong>(a) En las luces de navidad, los foquitos están conectados en serie.<br/>
+					(b) La instalación de un interruptor siempre es en serie a una bombilla de luz. -></strong>
+				</p>
+			</div>
+			<div class="col-lg-6">
+				<img src="{{ "/img/posts/conexion_serie2.png" | prepend: site.baseurl }}" class="img-responsive" alt="conexión en serie"/>
+			</div>
+			<ul>
+				<li class="col-lg-12">
+					<p>Resistores en serie</p>
+					<div class="col-lg-6">
+						<p class="text-justify">
+							En ocaciones, observamos varias bombillas de luz conectadas en serie. Tomando en cuenta que cada bombilla posee un filamento delgado <strong>(hecho de wolframio)</strong>, y que por lo tanto posee una resistencia eléctrica que reemplace a todas en el circuito y que, sobre todo, no altere las condiciones iniciales del circuito. A esta resistencia se le denomina resistencia equivalente.
+						</p>
+						<p class="text-justify">
+							Para calcular la resistencia equivalente de varias resistencias conectadas en serie, se aplica la ecuación:<br/>
+							<h2><strong>R<sub>e</sub> = R<sub>1</sub> + R<sub>2</sub> + R<sub>3</sub> ...</strong><h2>
+						</p>
+					</div>
+					<div class="col-lg-6">
+						<img src="{{ "/img/posts/resistencia_equivalente_serie.png" | prepend: site.baseurl }}" class="img-responsive" alt="Resistencia equivalente serie"/>
+					</div>
+				</li>
+			</ul>
+		</li>
+		<li class="col-lg-12">
+			<strong>Conexión en paralelo</strong><br/>
+			<div class="col-lg-6">
+				<p class="text-justify">
+					Conectamos los polos negativos de los elementos de un circuito entre sí, y de la misma forma, unimos todos los polos positivos.
+				</p>
+				<p class="text-justify">
+					En un circuito en paralelo, cada receptor conectado a la fuente de alimentación lo está de forma independiente al resto; cada uno tiene su propia línea, aunque haya parte de esa línea que sea común a todos.
+				</p>
+				<p class="text-right">
+					<strong>En nuestras casas o edificios las bombillas y/o los fluorescentes están conectados en paralelo. Esto se hace con el objetivo de que si se quema un fluorescente, los demás funcionen con normalidad. Lo que no ocurriría de tratarse de una conexión en serie, porque al quemarse un fluorescente los demás no prenderían. -></strong>
+				</p>
+			</div>
+			<div class="col-lg-6">
+				<img src="{{ "/img/posts/conexion_paralelo.png" | prepend: site.baseurl }}" class="img-responsive" alt="conexión en paralelo"/>
+			</div>
+			<div class="col-lg-6">
+				<img src="{{ "/img/posts/conexion_paralelo2.png" | prepend: site.baseurl }}" class="img-responsive" alt="conexión en paralelo"/>
+			</div>
+			<div class="col-lg-6">
+				<br/>
+				<p class="text-justify">
+					Como vimos en la conexión en serie, los interruptores están en serie con las bombillas de luz. Sin embargo, cuando se trata de tomacorrientes, estos se encuentran en paralelo a las líneas vivas o de tensión.
+				</p>
+				<br/>
+				<p class="text-left">
+					<strong><- Los interruptores se conectan en serie con las bombillas, pero los tomacorrientes están en paralelo a las líneas vivas o de tensión.</strong>
+				</p>
+			</div>
+			<ul>
+				<li class="col-lg-12">
+					<p>Resistores en paralelo</p>
+					<div class="col-lg-6">
+						<img src="{{ "/img/posts/resistencia_equivalente_paralelo.png" | prepend: site.baseurl }}" class="img-responsive" alt="Resistencia equivalente paralelo"/>
+					</div>
+					<div class="col-lg-6">
+						<img src="{{ "/img/posts/formula-resistencia-paralelo.png" | prepend: site.baseurl }}" class="img-responsive" alt="Fórmula resistencia en paralelo"/>
+					</div>
+				</li>
+			</ul>
+		</li>
+	</ol>
+</div>
