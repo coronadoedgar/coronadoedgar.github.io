@@ -1,0 +1,100 @@
+---
+layout: post
+title: "Instalar Odoo 9 en entorno de desarrollo"
+categories: [odoo]
+img: img-16-16.jpg
+---
+<div class="col-lg-12">
+	<ol>
+		<li>
+			<strong>Descargar y descomprimir odoo9</strong>
+{% highlight python linenos %}
+{% raw %}
+wget http://nightly.odoo.com/9.0/nightly/src/odoo_9.0.latest.tar.gz
+tar -xzvf odoo_9.0.latest.tar.gz
+
+{% endraw %}
+{% endhighlight %}
+		</li>
+		<li>
+			<strong>Instalar librerías python</strong>
+{% highlight python linenos %}
+{% raw %}
+sudo aptitude update
+
+sudo aptitude install libxml2-dev libxslt1-dev libldap2-dev libsasl2-dev libssl-dev libjpeg-dev libfreetype6-dev zlib1g-dev libpng12-dev
+
+sudo aptitude install postgresql-server-dev-X.Y
+
+{% endraw %}
+{% endhighlight %}
+		</li>
+		<li>
+			<strong>Instalar requerimientos de odoo</strong>
+{% highlight python linenos %}
+{% raw %}
+sudo pip install -r requirements.txt 
+sudo pip install --upgrade Pillow
+
+{% endraw %}
+{% endhighlight %}
+		</li>
+		<li>
+			<strong>Instalar NodeJS y less</strong><br/>
+			**<a href="https://nodejs.org/en/download/package-manager/" target="_blank">Installing Node.js via package manager</a>
+{% highlight python linenos %}
+{% raw %}
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+sudo npm install -g less
+sudo npm install -g less-plugin-clean-css
+
+{% endraw %}
+{% endhighlight %}
+		</li>
+		<li>
+			<strong>Crear archivo de configuración</strong>
+			<p>
+				Dentro del src crear un archivo odoo-server.conf con el siguiente contenido:	
+			</p>
+{% highlight python linenos %}
+{% raw %}
+[options]
+db_host=False
+db_port=False
+db_user=odoo
+db_password=odoo
+addons_path=/PATH/addons
+
+{% endraw %}
+{% endhighlight %}
+		</li>
+		<li>
+			<strong>Ejecución</strong>
+{% highlight python linenos %}
+{% raw %}
+python odoo.py -c odoo-server.conf
+
+{% endraw %}
+{% endhighlight %}
+
+			<div class="col-lg-12">
+				<div class="col-lg-6">
+					<img src="{{ "/img/posts/login_odoo.png" | prepend: site.baseurl}}" class="img-responsive" alt="login odoo"/>
+				</div>
+				<div class="col-lg-6">
+					<img src="{{ "/img/posts/view_contacts.png" | prepend: site.baseurl}}" class="img-responsive" alt="contacts"/>
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<div class="col-lg-6">
+					<img src="{{ "/img/posts/invoiced.png" | prepend: site.baseurl}}" class="img-responsive" alt="invoiced"/>
+				</div>
+				<div class="col-lg-6">
+					<img src="{{ "/img/posts/view_apps.png" | prepend: site.baseurl}}" class="img-responsive" alt="apps"/>
+				</div>
+			</div>
+		</li>
+	</ol>
+</div>
