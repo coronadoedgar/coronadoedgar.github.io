@@ -1,0 +1,313 @@
+---
+layout: post
+title: "Sistema de plantillas 3"
+categories: [django]
+img: img-16-17.jpg
+---
+<div class="col-lg-12 text-justify">
+	<h3><strong>Etiquetas básicas de plantillas y filtros</strong></h3>
+	<h3>Etiquetas</h3>
+	<ol>
+		<li class="col-lg-12">
+			<p><strong>ifequal/ifnoequal</strong></p>
+			<div class="col-lg-4">
+				<p>
+					Ejemplos válidos: cadenas de texto, enteros y los números decimales son permitidos como argumentos.
+				</p>
+{% highlight ruby linenos %}
+{% raw %}
+{% ifequal variable 1 %} 
+{% ifequal variable 1.23 %} 
+{% ifequal variable 'foo' %} 
+{% ifequal variable "foo" %}
+
+{% endraw %}
+{% endhighlight%}
+			</div>
+			<div class="col-lg-4">
+				<p>Dicionarios, listas o booleanos, no son permitidos.</p>
+{% highlight ruby linenos %}
+{% raw %}
+{% ifequal variable True %} 
+{% ifequal variable [1, 2, 3] %} 
+{% ifequal variable {'key': 'value'} %} 
+
+{% endraw %}
+{% endhighlight%}
+			</div>
+			<div class="col-lg-4">
+				<p><strong>ifequal</strong> admite opcionalmente la etiqueta <strong>else</strong>.</p>
+{% highlight ruby linenos %}
+{% raw %}
+{% ifequal seccion 'noticias' %} 
+    <h1>Noticias</h1> 
+{% else %} 
+    <h1>No hay noticias nuevas</h1> 
+{% endifequal %}
+
+{% endraw %}
+{% endhighlight%}
+			</div>
+		</li>
+		<li class="col-lg-12">
+			<p><strong>if/else</strong></p>
+			<div class="col-lg-6">
+{% highlight ruby linenos %}
+{% raw %}
+{% if es_fin_de_semana %} 
+    <p>¡Bienvenido fin de semana!</p> 
+{% endif %} 
+
+<!--if/else-->
+{% if es_fin_de_semana %} 
+    <p>¡Bienvenido fin de semana!</p> 
+{% else %} 
+    <p>De vuelta al trabajo.</p> 
+{% endif %} 
+
+{% endraw %}
+{% endhighlight%}
+			</div>
+			<div class="col-lg-6">
+				Los siguientes objetos son evaluados como <strong>Falsos</strong> en un contexto booleano:
+				<ul>
+					<li>Una lista vacía ([])</li>
+					<li>Una tupla vacía (())</li>
+					<li>Un diccionario vacío ({})</li>
+					<li>Una cadena vacía ('')</li>
+					<li>El cero (0)</li>
+					<li>El objeto especial None</li>
+					<li>El objeto False</li>
+				</ul>
+				<strong>** None: es un objeto especial de Python que devuelven funciones que bien no tienen una setencia de return o bien tienen una setencia de return sin argumento.</strong>
+			</div>
+			<p>Se acepta: <strong>and, or, o not</strong></p>
+			<div class="col-lg-6">
+{% highlight ruby linenos %}
+{% raw %}
+{% if lista_atletas and lista_entrenadores %} 
+    Atletas y Entrenadores están disponibles 
+{% endif %} 
+ 
+{% if not lista_atletas %} 
+    No hay atletas 
+{% endif %} 
+
+{% endraw %}
+{% endhighlight%}
+			</div>
+			<div class="col-lg-6">
+{% highlight ruby linenos %}
+{% raw %}
+{% if lista_atletas or lista_entrenadores %} 
+    Hay algunos atleta o algunos entrenadores 
+{% endif %} 
+{% if not lista_atletas or lista_entrenadores %} 
+    No hay atletas o no hay entrenadores. 
+{% endif %} 
+ 
+{% if lista_atletas and not lista_entrenadores %} 
+    Hay algunos atletas y absolutamente ningún entrenador. 
+{% endif %}
+
+{% endraw %}
+{% endhighlight%}
+			</div>
+{% highlight ruby linenos %}
+{% raw %}
+<!--No se permiten cláusulas and y or en la misma etiqueta. Por ejemplo esto es inválido:-->
+{% if lista_atletas and lista_entrenadores or lista_porristas %}
+
+<!--Aún así, si necesitas combinar and y or para hacer lógica avanzada, usa etiquetas {% if %} anidadas, por ejemplo:-->
+{% if lista_atletas %} 
+    {% if lista_entrenadores or lista_porristas %} 
+        ¡Tenemos atletas y entrenadores o porristas! 
+    {% endif %} 
+{% endif %} 
+
+<!--Usar varias veces el mismo operador lógico está bien, pero no puedes combinar diferentes operadores. Por ejemplo, esto es válido:-->
+{% if lista_atletas or lista_entrenadores or lista_padres or lista_maestros %} 
+
+<!--No hay una etiqueta {% elif %}. En su lugar usa varias etiquetas {% if %} anidadas para conseguir el mismo resultado:-->
+{% if lista_atletas %} 
+    <p>Aquí están los atletas: {{ lista_atletas }}.</p> 
+{% else %} 
+    <p>No hay atletas disponibles.</p> 
+    {% if lista_entrenadores %} 
+        <p>Aquí están los entrenadores: {{ lista_entrenadores }}.</p> 
+    {% endif %} 
+{% endif %}
+
+{% endraw %}
+{% endhighlight%}
+		</li>
+		<li class="col-lg-12">
+			<p><strong>for</strong></p>
+			<div class="col-lg-6">
+{% highlight ruby linenos %}
+{% raw %}
+<ul> 
+{% for atleta in lista_atletas %} 
+    <li>{{ atleta.nombre }}</li> 
+{% endfor %} 
+</ul> 
+
+<!--Agrega reversed a la etiqueta para iterar sobre la lista en orden inverso:-->
+{% for atleta in lista_atletas reversed %} 
+... 
+{% endfor %} 
+
+<!--Anidar etiquetas for-->
+{% for pais in paises %} 
+    <h1>{{ pais.nombre }}</h1> 
+    <ul> 
+    {% for ciudad in pais.lista_ciudades %} 
+         <li>{{ ciudad }}</li> 
+    {% endfor %} 
+    </ul> 
+{% endfor %} 
+
+{% endraw %}
+{% endhighlight%}
+			</div>
+			<div class="col-lg-6">
+{% highlight ruby linenos %}
+{% raw %}
+<!--Un uso muy común de la etiqueta for, es para comprobar 
+el tamaño de una lista antes de iterar sobre ella y mostrar
+algún texto en especial, si la lista está vacía:-->
+{% if lista_atletas %} 
+    {% for atleta in lista_atletas %} 
+        <p>{{ atleta.nombre }}</p> 
+    {% endfor %} 
+{% else %} 
+    <p>No hay atletas. Únicamente programadores.</p> 
+{% endif %} 
+
+<!--El siguiente ejemplo es equivalente al anterior:-->
+{% for atleta in lista_atletas %} 
+    <p>{{ atleta.nombre }}</p> 
+{% empty %} 
+    <p>No hay atletas. Únicamente programadores.</p> 
+{% endfor %} 
+
+{% endraw %}
+{% endhighlight%}
+			</div>
+			<div class="col-lg-12">
+			<p>
+				No se admite la "ruptura" de un bucle antes de que termine. Si quieres conseguir esto, cambia la variable sobre la que estás iterando para que incluya sólo los valores sobre los cuales quieres iterar. De manera similar, no hay apoyo para la sentencia "continue" que se encargue de retornar inmediatamente al inicio del bucle.
+			</p>
+			<p>
+				Dentro de cada bucle, la etiqueta <strong>for</strong> permite acceder a una variable llamada <strong>forloop</strong>. Esta variable tiene algunos atributos que toman información acerca del progreso del bucle:
+				<ol type="i">
+					<li>
+						<p><strong>forloop.counter</strong></p>
+						<p>
+							Es siempre asignada a un número entero representando el número de veces que se ha entrado en el bucle. Esta es indexada a partir de 1, por lo que la primera vez que se ingresa al bucle, forloop.counter será 1. Aquí un ejemplo:
+{% highlight ruby linenos %}
+{% raw %}
+{% for objeto in lista %} 
+	<p>{{ forloop.counter }}: {{ objeto }}</p> 
+{% endfor %} 
+
+{% endraw %}
+{% endhighlight%}
+						</p>
+					</li>
+					<li>
+						<p><strong>forloop.counter0</strong></p>
+						<p>
+							Es como <strong>forloop.counter</strong>, excepto que esta es indexada a partir de cero. Contendrá el valor 0 la primera vez que se atraviese el bucle.
+						</p>
+					</li>
+					<li>
+						<p><strong>forloop.revcounter</strong></p>
+						<p>
+							Es siempre asignado a un entero que representa el número de iteraciones que faltan para terminar el bucle. La primera vez que se ejecuta el bucle forloop.revcounter será igual al número de elementos que hay en la secuencia. La última vez que se atraviese el bucle, a <strong>forloop.revcounter</strong> se la asignará el valor 1.
+						</p>
+					</li>
+					<li>
+						<p><strong>forloop.revcounter0</strong></p>
+						<p>
+							Es como forloop.revcounter, a excepción de que está indexada a partir de cero. La primera vez que se atraviesa el bucle, forloop.revcounter0 es asignada al número de elementos que hay en la secuencia menos 1. La última vez que se atraviese el bucle, el valor de esta será 0.
+						</p>
+					</li>
+					<li>
+						<p><strong>forloop.first</strong></p>
+						<p>
+							Es un valor booleano asignado a True si es la primera vez que se pasa por el bucle.
+{% highlight ruby linenos %}
+{% raw %}
+{% for objeto in objetos %} 
+    {% if forloop.first %}<li class="first">{% else %}<li>{% endif %} 
+        {{ objeto }} </li> 
+{% endfor %}
+
+{% endraw %}
+{% endhighlight%}
+						</p>
+					</li>
+					<li>
+						<p><strong>forloop.last</strong></p>
+						<p>
+							Es un valor booleano asignado a True si es la última pasada por el bucle.
+{% highlight ruby linenos %}
+{% raw %}
+{% for enlace in enlaces %}
+	{{ enlace }} {% if not forloop.last %} | {% endif %} 
+{% endfor %} 
+
+{% endraw %}
+{% endhighlight%}
+						</p>
+					</li>
+					<li>
+						<p><strong>forloop.parentloop</strong></p>
+						<p>
+							Hace referencia al objeto padre de forloop, en el caso de bucles anidados. Aquí un ejemplo:
+						</p>
+{% highlight ruby linenos %}
+{% raw %}
+{% for pais in paises %} 
+    <table> 
+    {% for ciudad in pais.lista_ciudades %} 
+        <tr> 
+           <td>pais #{{ forloop.parentloop.counter }}</td> 
+            <td>City #{{ forloop.counter }}</td> 
+            <td>{{ ciudad }}</td> 
+        </tr> 
+    {% endfor %} 
+    </table> 
+{% endfor %}
+
+{% endraw %}
+{% endhighlight%}
+					</li>
+				</ol>
+			</p>
+			</div>
+		</li>
+		<li class="col-lg-12">
+			<p><strong>Comentarios</strong></p>
+{% highlight ruby linenos %}
+{% raw %}
+<!--Este comentario no será mostrado cuando la plantilla sea renderizada.-->
+{# Esto es un comentario #} 
+
+<!--Si quieres usar un comentario que abarque varias líneas-->
+{% comment %} 
+    Este es un comentario 
+    que abarca varias líneas 
+{% endcomment %} 
+
+{% endraw %}
+{% endhighlight%}
+		</li>
+	</ol>
+	<br/>
+	<br/>
+	<h3>Filtros</h3>
+	<p>Los filtros de plantillas son formas simples de alterar el valor de una variable antes de mostrarla.</p>
+	<p>Debido a que algunos de este tipo de elementos están quedando desfasados por las versiones que van saliendo de django y un ejemplo de ellos quedaría corto en esta publicación considero recomendado revisar la documentación de django oficial, que lo encuentran titulado como: <strong><a href="https://docs.djangoproject.com/en/1.10/ref/templates/builtins/" target="_blank">Built-in template tags and filters</a></strong>.</p>
+</div>
