@@ -1,0 +1,112 @@
+---
+layout: post
+title: "Hola Mundo"
+categories: [angular]
+img: img-17-5.jpg
+---
+
+<div class="col-lg-12">
+	<h3><strong><a href="https://github.com/coronadoedgar/docker/tree/master/angular" target="_blank">Angular en Docker</a></strong></h3>
+  <p>docker-compose run -p 0.0.0.0:3000:3000 app_node bash</p>
+
+  <h3><strong>Nuevo proyecto</strong></h3>
+{% highlight ruby linenos %}
+{% raw %}
+ng new angular-project
+cd angular-project
+ng serve --host 0.0.0.0 --port 3000
+{% endraw %}
+{% endhighlight%}
+	<p>Modificando el archivo package.json podemos configurar en <strong>start</strong> el host y puerto por defecto:</p>
+{% highlight javascript linenos %}
+{% raw %}
+{
+	"name": "angular-project",
+	"version": "0.0.0",
+	"license": "MIT",
+	"scripts": {
+		"ng": "ng",
+		"start": "ng serve --host 0.0.0.0 --port 3000",
+		"build": "ng build",   
+  	...
+  	...
+{% endraw %}
+{% endhighlight%}
+  <p>Ejecutar <strong>npm start</strong> para levantar el servicio de angular</p>
+
+  <h3><strong>Crear componente</strong></h3>
+  <ol>
+    <li>Modificamos el fichero .angular-cli.json para evitar crear plantillas y estilos extras.
+{% highlight javascript linenos %}
+{% raw %}
+"defaults": {
+  "styleExt": "css",
+  "component": {
+    "inlineStyle": true,
+    "inlineTemplate": true
+  }
+}
+{% endraw %}
+{% endhighlight%}
+    </li>
+    <li>Crear carpeta que contendrá los componentes.
+{% highlight javascript linenos %}
+{% raw %}
+cd src/app
+mkdir components
+{% endraw %}
+{% endhighlight%}
+    </li>
+    <li>En la raíz del proyecto generamos el componente.
+{% highlight javascript linenos %}
+{% raw %}
+ng g c components/my-new-component
+{% endraw %}
+{% endhighlight%}
+    </li>
+    <li>En app.module.ts se importará automáticamente el componente generado.
+{% highlight javascript linenos %}
+{% raw %}
+import { AppComponent } from './app.component';
+import { MyNewComponentComponent } from './components/my-new-component/my-new-component.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    MyNewComponentComponent
+  ],
+  imports: [
+    BrowserModule,
+  ...
+  ...
+
+{% endraw %}
+{% endhighlight%}      
+    </li>
+    <li>En nuestro componente modificamos la plantilla:
+{% highlight javascript linenos %}
+{% raw %}
+@Component({
+  selector: 'app-my-new-component',
+  template: `
+    <p>
+      Hola Angular!
+    </p>
+  `,
+  styles: []
+})
+{% endraw %}
+{% endhighlight%}      
+    </li>
+    <li>Agregamos el selector al componente base:
+{% highlight html linenos %}
+{% raw %}
+<h1>
+  {{title}}
+</h1>
+<app-my-new-component></app-my-new-component>
+{% endraw %}
+{% endhighlight%}      
+    </li>
+  </ol>
+</div>
